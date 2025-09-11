@@ -4,8 +4,6 @@ import { Utilisateur } from '@prisma/client';
 import { faker } from '@faker-js/faker';
 import * as bcrypt from 'bcrypt';
 
-
-
 @Injectable()
 export class UtilisateurService {
 
