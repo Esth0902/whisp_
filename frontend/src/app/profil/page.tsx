@@ -8,3 +8,15 @@ export default function Profil() {
         </div>
     );
 }
+
+
+"use client";
+import { useEffect, useState } from "react";
+
+type User = {
+    id: number;
+    email: string;
+    name?: string;
+    createdAt: string;
+};
+

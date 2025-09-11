@@ -11,6 +11,8 @@ export default function Accueil() {
             <Link href="/profil">Mon Profil</Link>
             <br/>
             <Link href="/messagerie">Ma Messagerie</Link>
+            <br/>
+            <Link href="/utilisateur">Utilisateurs</Link>
 
         </div>
     );
