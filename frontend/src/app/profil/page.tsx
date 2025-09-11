@@ -1,4 +1,12 @@
-'use client';
+"use client";
+import { useEffect, useState } from "react";
+
+type User = {
+    id: number;
+    email: string;
+    name?: string;
+    createdAt: string;
+};
 
 export default function Profil() {
     return (
@@ -9,14 +17,4 @@ export default function Profil() {
     );
 }
 
-
-"use client";
-import { useEffect, useState } from "react";
-
-type User = {
-    id: number;
-    email: string;
-    name?: string;
-    createdAt: string;
-};
 
