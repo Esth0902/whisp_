@@ -1,45 +1,33 @@
+"use client";
+
 import React from "react";
+import { useUser } from "@clerk/nextjs";
+import LogoutButton from "@/components/logout";
 
 export default function Header() {
+    const { isSignedIn } = useUser();
+
     return (
-        <header style={headerStyle}>
-            <h1 style={titleStyle}>Whisp</h1>
-            <nav style={navStyle}>
-                <a href="/" style={linkStyle}>Accueil</a>
-                <a href="/utilisateur" style={linkStyle}>Utilisateurs</a>
-                <a href="/messagerie" style={linkStyle}>Messages</a>
-                <a href="/profil" style={linkStyle}>Profil</a>
-            </nav>
+        <header className="bg-gray-900 text-gray-100 px-8 py-4 flex items-center justify-between shadow-md">
+            <h1 className="m-0 text-2xl font-bold font-sans select-none">
+                <a href="/" className="hover:text-gray-400 transition-colors">
+                    Whisp
+                </a>
+            </h1>
+            {isSignedIn && (
+                <nav className="flex items-center gap-8">
+                    <a href="/utilisateur" className="font-medium text-gray-100 hover:text-gray-400 transition-colors">
+                        Utilisateurs
+                    </a>
+                    <a href="/messagerie" className="font-medium text-gray-100 hover:text-gray-400 transition-colors">
+                        Messages
+                    </a>
+                    <a href="/profil" className="font-medium text-gray-100 hover:text-gray-400 transition-colors">
+                        Profil
+                    </a>
+                    <LogoutButton />
+                </nav>
+            )}
         </header>
     );
 }
-
-const headerStyle: React.CSSProperties = {
-    backgroundColor: "#0a63b7",
-    color: "white",
-    padding: "1rem 2rem",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
-};
-
-const titleStyle: React.CSSProperties = {
-    margin: 0,
-    fontSize: "1.8rem",
-    fontWeight: "bold",
-    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-};
-
-const navStyle: React.CSSProperties = {
-    display: "flex",
-    gap: "1.5rem",
-};
-
-const linkStyle: React.CSSProperties = {
-    color: "white",
-    textDecoration: "none",
-    fontWeight: 500,
-    fontSize: "1rem",
-    transition: "color 0.2s",
-};
