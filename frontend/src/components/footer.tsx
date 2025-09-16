@@ -2,20 +2,11 @@ import React from "react";
 
 export default function Footer() {
     return (
-        <footer style={footerStyle}>
+        <footer className="bg-gray-900 text-gray-400 py-2 px-6 text-center mt-auto font-sans text-xs select-none">
             <p>© {new Date().getFullYear()} Whisp - Tous droits réservés</p>
-            <p style={{ fontSize: "0.8rem", marginTop: 4, color: "#ccc" }}>
+            <p className="mt-0.5">
                 Site de messagerie simple et moderne
             </p>
         </footer>
     );
 }
-
-const footerStyle: React.CSSProperties = {
-    backgroundColor: "#0a63b7",
-    color: "white",
-    padding: "1rem 2rem",
-    textAlign: "center",
-    marginTop: "auto",
-    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-};

@@ -17,7 +17,7 @@ model Utilisateur {
   id          Int       @id @default(autoincrement())
   nom         String
   email       String    @unique
-  motDePasse  String
+  clerkId     String    @unique // <-- Synchronisation Clerk
   messages    Message[]
 }
 

@@ -1,18 +1,15 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Put} from '@nestjs/common';
 import { UtilisateurService } from './utilisateur.service';
 
 @Controller('utilisateur')
 export class UtilisateurController {
-
     constructor(private readonly service: UtilisateurService) {}
 
-    // Route POST /utilisateurs → créer un utilisateur
     @Post()
-    creerUser(@Body() body: { nom: string; email: string; motDePasse: string }) {
+    creerUser(@Body() body: { nom: string; email: string; clerkId: string }) {
         return this.service.creerUser(body);
     }
 
-    // Route GET /utilisateurs → lire tous les utilisateurs
     @Get()
     lireUsers() {
         return this.service.lireUsers();
@@ -23,9 +20,18 @@ export class UtilisateurController {
         return this.service.genererFauxUtilisateurs();
     }
 
-    // Route GET /utilisateurs/:id → lire un utilisateur par ID
-    @Get(':id')
-    lireUser(@Param('id') id: string) {
-        return this.service.lireUser(Number(id));
+    // Lecture utilisateur par clerkId (string)
+    @Get('clerk/:clerkId')
+    lireUserParClerkId(@Param('clerkId') clerkId: string) {
+        return this.service.lireUserParClerkId(clerkId);
+    }
+
+    // Mise à jour utilisateur par clerkId
+    @Put(':clerkId')
+    mettreAJourProfil(
+        @Param('clerkId') clerkId: string,
+        @Body() body: { nom?: string }
+    ) {
+        return this.service.mettreAJourProfil(clerkId, body);
     }
 }
