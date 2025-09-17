@@ -20,8 +20,4 @@ export class MessageService {
             }
         )
     }
-
-    async supprimerConversation(id: number){
-        return this.prisma.conversation.delete({where:{id}})
-    }
 }
