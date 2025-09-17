@@ -7,10 +7,10 @@ import { faker } from '@faker-js/faker';
 export class UtilisateurService {
     constructor(private prisma: PrismaService) {}
 
-    async creerUser(data: { nom: string; email: string; clerkId: string }): Promise<Utilisateur> {
+    async creerUser(data: { pseudo: string; email: string; clerkId: string }): Promise<Utilisateur> {
         return this.prisma.utilisateur.create({
             data: {
-                nom: data.nom,
+                pseudo: data.pseudo,
                 email: data.email,
                 clerkId: data.clerkId,
             },
@@ -34,7 +34,7 @@ export class UtilisateurService {
             try {
                 const user = await this.prisma.utilisateur.create({
                     data: {
-                        nom: faker.person.fullName(),
+                        pseudo: faker.person.fullName(),
                         email: faker.internet.email(),
                         clerkId: faker.string.uuid(),
                     },
@@ -48,10 +48,14 @@ export class UtilisateurService {
         return utilisateurs;
     }
 
-    async mettreAJourProfil(clerkId: string, data: { nom?: string }): Promise<Utilisateur> {
+    async mettreAJourProfil(clerkId: string, data: { pseudo?: string; avatar?:string}): Promise<Utilisateur> {
         return this.prisma.utilisateur.update({
             where: { clerkId },
             data,
         });
+    }
+
+    async supprimerUtilisateur(clerkId: string): Promise<Utilisateur> {
+        return this.prisma.utilisateur.delete({where: { clerkId }});
     }
 }

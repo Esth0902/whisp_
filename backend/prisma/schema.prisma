@@ -14,18 +14,55 @@ datasource db {
 }
 
 model Utilisateur {
-  id          Int       @id @default(autoincrement())
-  nom         String
-  email       String    @unique
-  clerkId     String    @unique // <-- Synchronisation Clerk
+  id          Int                    @id @default(autoincrement())
+  pseudo      String
+  email       String                 @unique
+  clerkId     String                 @unique // <-- Synchronisation Clerk
+  avatar      String?
+  role        Role                   @default(user)
   messages    Message[]
+  conversations    Conversation[]    @relation("Participants")
+  relationsEnvoyees Relation[]       @relation("Demandeur")
+  relationsRecues   Relation[]       @relation("Receveur")
 }
-
 
 model Message {
   id            Int          @id @default(autoincrement())
   contenu       String
   dateEnvoi     DateTime     @default(now())
   utilisateurId Int
-  utilisateur   Utilisateur  @relation(fields: [utilisateurId], references: [id])
+  conversationId  Int
+  utilisateur   Utilisateur   @relation(fields: [utilisateurId], references: [id])
+  conversation Conversation   @relation(fields: [conversationId], references: [id])
+}
+
+model Conversation {
+  id            Int              @id @default(autoincrement())
+  nom           String?          @db.VarChar(50)
+  dateCreation   DateTime        @default(now())
+  messages      Message[]
+  participants  Utilisateur[]    @relation("Participants")
+}
+
+model Relation {
+  id            Int                 @id @default(autoincrement())
+  demandeurId   Int
+  receveurId    Int
+  statut        StatutRelation      @default(en_attente)
+  dateCreation  DateTime            @default(now())
+  demandeur     Utilisateur         @relation("Demandeur", fields: [demandeurId], references: [id])
+  receveur      Utilisateur         @relation("Receveur", fields: [receveurId], references: [id])
+  @@unique([demandeurId, receveurId])
+}
+
+enum Role {
+  admin
+  user
+}
+
+enum StatutRelation {
+  en_attente
+  acceptee
+  refusee
+  bloquee
 }
