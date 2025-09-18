@@ -10,9 +10,10 @@ type Utilisateur = {
 
 export default function UtilisateurPage() {
     const [utilisateurs, setUtilisateurs] = useState<Utilisateur[]>([]);
+    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
     useEffect(() => {
-        fetch("${BACKEND_URL}/utilisateurs")
+        fetch(`${BACKEND_URL}/utilisateurs`)
             .then((res) => res.json())
             .then((data) => setUtilisateurs(data));
     }, []);
