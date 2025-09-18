@@ -37,8 +37,12 @@ export default function ProfilPage() {
                 } else {
                     setMessage("Utilisateur introuvable ou réponse vide.");
                 }
-            } catch (err: any) {
-                setMessage(err.message);
+            } catch (error: unknown) {
+                if (error instanceof Error) {
+                    setMessage(`Erreur lors de la mise à jour : ${error.message}`);
+                } else {
+                    setMessage(`Erreur lors de la mise à jour : ${String(error)}`);
+                }
             }
         };
 
@@ -72,8 +76,12 @@ export default function ProfilPage() {
 
             setPassword("");
             setMessage("Profil mis à jour avec succès !");
-        } catch (error: any) {
-            setMessage(`Erreur lors de la mise à jour : ${error.message || error.toString()}`);
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                setMessage(err.message);
+            } else {
+                setMessage(String(err));
+            }
         } finally {
             setLoading(false);
         }

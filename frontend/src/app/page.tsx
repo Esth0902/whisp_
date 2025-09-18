@@ -24,7 +24,7 @@ export default function HomePage() {
                             href="/inscription"
                             className="px-8 py-3 bg-gray-700 text-white rounded-lg shadow hover:bg-gray-600 transition"
                         >
-                            S'inscrire
+                            S&apos;inscrire
                         </Link>
                     </div>
                 </>
