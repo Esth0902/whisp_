@@ -1,2 +1,2 @@
 ### Générer des utilisateurs fictifs
-GET http://localhost:4000/utilisateurs/faker
+GET https://whisp-alpha.vercel.app/utilisateurs/faker

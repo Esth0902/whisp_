@@ -17,11 +17,12 @@ export default function ProfilPage() {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
+    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
     useEffect(() => {
         if (isLoaded && isSignedIn && user) {const fetchUtilisateur = async () => {
             try {
-                const res = await fetch(`http://localhost:4000/utilisateurs/clerk/${user.id}`);
+                const res = await fetch(`${BACKEND_URL}/utilisateurs/clerk/${user.id}`);
 
                 if (!res.ok) {
                     throw new Error(`Erreur ${res.status} lors du chargement utilisateur.`);
@@ -60,7 +61,13 @@ export default function ProfilPage() {
         setLoading(true);
 
         try {
-            const response = await fetch(`http://localhost:4000/utilisateurs/${user!.id}/profil`, {
+            if (!user) {
+                setMessage("Utilisateur non connecté");
+                setLoading(false);
+                return;
+            }
+
+            const response = await fetch(`${BACKEND_URL}/utilisateurs/${user.id}/profil`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ pseudo: username }),

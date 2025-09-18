@@ -12,7 +12,7 @@ export default function UtilisateurPage() {
     const [utilisateurs, setUtilisateurs] = useState<Utilisateur[]>([]);
 
     useEffect(() => {
-        fetch("http://localhost:4000/utilisateurs")
+        fetch("${BACKEND_URL}/utilisateurs")
             .then((res) => res.json())
             .then((data) => setUtilisateurs(data));
     }, []);
