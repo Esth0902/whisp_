@@ -40,7 +40,7 @@ export class UtilisateurController {
         @Param('clerkId') clerkId: string,
         @Body() body: { statut: boolean },
     ) {
-        return this.service.mettreAJourStatut(clerkId, body.statut);
+        return this.service.mettreAJourStatut(clerkId, body);
     }
 
     @Delete(':clerkId')

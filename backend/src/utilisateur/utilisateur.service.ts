@@ -59,10 +59,10 @@ export class UtilisateurService {
         return this.prisma.utilisateur.delete({where: { clerkId }});
     }
 
-    async mettreAJourStatut(clerkId: string, statut: boolean) {
+    async mettreAJourStatut(clerkId: string, data:{statut: boolean}) {
         return this.prisma.utilisateur.update({
             where: { clerkId },
-            data: { statut },
+            data,
         });
     }
 }
