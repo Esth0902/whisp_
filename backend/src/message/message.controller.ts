@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Param,Body,Delete } from '@nestjs/common';
+import { Controller, Post, Get, Param,Body } from '@nestjs/common';
 import { MessageService } from './message.service';
 import {Prisma} from '@prisma/client'
 
@@ -7,8 +7,15 @@ export class MessageController {
     constructor(private readonly service: MessageService) {}
 
     @Post()
-    envoyerMessage(@Body() data:Prisma.MessageCreateInput) {
-        return this.service.envoyerMessage(data)
+    envoyerMessage(
+        @Body()
+        body: { utilisateurId: number; conversationId: number; contenu: string },
+    ) {
+        return this.service.envoyerMessage(
+            body.utilisateurId,
+            body.conversationId,
+            body.contenu,
+        );
     }
 
     @Get('conversation/conversationId')
@@ -16,9 +23,6 @@ export class MessageController {
         return this.service.lireMessagesConversation(Number(conversationId));
     }
 
-    @Delete('conversation/:id')
-    supprimerConversation(@Param('id') id: string) {
-        return this.service.supprimerConversation(Number(id));
-    }
+
 
 }

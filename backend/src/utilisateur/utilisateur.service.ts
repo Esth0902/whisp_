@@ -34,7 +34,7 @@ export class UtilisateurService {
             try {
                 const user = await this.prisma.utilisateur.create({
                     data: {
-                        pseudo: faker.person.fullName(),
+                        pseudo: faker.person.middleName(),
                         email: faker.internet.email(),
                         clerkId: faker.string.uuid(),
                     },

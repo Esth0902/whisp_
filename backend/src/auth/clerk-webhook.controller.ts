@@ -13,12 +13,12 @@ export class ClerkWebhookController {
                 await this.prisma.utilisateur.upsert({
                     where: { clerkId: body.data.id },
                     update: {
-                        nom: `${body.data.username}`,
+                        pseudo: `${body.data.username}`,
                         email: body.data.email_addresses[0]?.email_address,
                     },
                     create: {
                         clerkId: body.data.id,
-                        nom: `${body.data.username}`,
+                        pseudo: `${body.data.username}`,
                         email: body.data.email_addresses[0]?.email_address,
                     },
                 });
@@ -28,7 +28,7 @@ export class ClerkWebhookController {
                 await this.prisma.utilisateur.update({
                     where: { clerkId: body.data.id },
                     data: {
-                        nom: `${body.data.username}`,
+                        pseudo: `${body.data.username}`,
                         email: body.data.email_addresses[0]?.email_address,
                     },
                 });

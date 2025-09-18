@@ -16,7 +16,6 @@ export class ClerkAuthGuard implements CanActivate {
         try {
             const payload = await verifyToken(token, {
                 secretKey: process.env.CLERK_SECRET_KEY!,
-                issuer: process.env.CLERK_ISSUER!,
             })
             req.user = payload // Attache la payload JWT à la requête pour un usage ultérieur
             return true

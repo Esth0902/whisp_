@@ -1,2 +1,2 @@
 ### Générer des utilisateurs fictifs
-GET http://localhost:4000/utilisateur/faker
+GET http://localhost:4000/utilisateurs/faker

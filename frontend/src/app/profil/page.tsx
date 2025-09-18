@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 type Utilisateur = {
     id: number;
-    nom: string;
+    pseudo: string;
     email: string;
 };
 
@@ -19,17 +19,30 @@ export default function ProfilPage() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        if (isLoaded && isSignedIn && user) {
-            fetch(`http://localhost:4000/utilisateur/clerk/${user.id}`)
-                .then((res) => {
-                    if (!res.ok) throw new Error("Erreur lors du chargement utilisateur.");
-                    return res.json();
-                })
-                .then((data) => {
+        if (isLoaded && isSignedIn && user) {const fetchUtilisateur = async () => {
+            try {
+                const res = await fetch(`http://localhost:4000/utilisateurs/clerk/${user.id}`);
+
+                if (!res.ok) {
+                    throw new Error(`Erreur ${res.status} lors du chargement utilisateur.`);
+                }
+
+                // Vérifie si la réponse a un contenu avant de parser
+                const text = await res.text();
+                const data = text ? JSON.parse(text) : null;
+
+                if (data) {
                     setUtilisateur(data);
-                    setUsername(data.nom);
-                })
-                .catch((err) => setMessage(err.message));
+                    setUsername(data.pseudo);
+                } else {
+                    setMessage("Utilisateur introuvable ou réponse vide.");
+                }
+            } catch (err: any) {
+                setMessage(err.message);
+            }
+        };
+
+            fetchUtilisateur();
         }
     }, [isLoaded, isSignedIn, user]);
 
@@ -43,10 +56,10 @@ export default function ProfilPage() {
         setLoading(true);
 
         try {
-            const response = await fetch(`http://localhost:4000/utilisateur/${user!.id}`, {
+            const response = await fetch(`http://localhost:4000/utilisateurs/${user!.id}/profil`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ nom: username }),
+                body: JSON.stringify({ pseudo: username }),
             });
 
             if (!response.ok) {
@@ -54,7 +67,7 @@ export default function ProfilPage() {
             }
 
             if (password) {
-                await user!.updatePassword({ password });
+                await user!.updatePassword({ newPassword: password });
             }
 
             setPassword("");
