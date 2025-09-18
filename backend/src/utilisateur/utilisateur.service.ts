@@ -58,4 +58,11 @@ export class UtilisateurService {
     async supprimerUtilisateur(clerkId: string): Promise<Utilisateur> {
         return this.prisma.utilisateur.delete({where: { clerkId }});
     }
+
+    async mettreAJourStatut(clerkId: string, statut: boolean) {
+        return this.prisma.utilisateur.update({
+            where: { clerkId },
+            data: { statut },
+        });
+    }
 }

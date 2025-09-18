@@ -35,6 +35,14 @@ export class UtilisateurController {
         return this.service.mettreAJourProfil(clerkId, body);
     }
 
+    @Put(':clerkId/statut')
+    mettreAJourStatut(
+        @Param('clerkId') clerkId: string,
+        @Body() body: { statut: boolean },
+    ) {
+        return this.service.mettreAJourStatut(clerkId, body.statut);
+    }
+
     @Delete(':clerkId')
     supprimerUser(@Param('clerkId') clerkId: string) {
         return this.service.supprimerUtilisateur(clerkId);

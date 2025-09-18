@@ -5,6 +5,7 @@ type Utilisateur = {
     id: number;
     nom: string;
     email: string;
+    online: boolean
 };
 
 export default function UtilisateurPage() {

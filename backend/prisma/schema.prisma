@@ -21,6 +21,7 @@ model Utilisateur {
   avatar      String?
   role        Role                   @default(user)
   messages    Message[]
+  statut      Boolean               @default(false)
   conversations    Conversation[]    @relation("Participants")
   relationsEnvoyees Relation[]       @relation("Demandeur")
   relationsRecues   Relation[]       @relation("Receveur")
