@@ -16,7 +16,7 @@ export default function UtilisateurPage() {
         fetch(`${BACKEND_URL}/utilisateurs`)
             .then((res) => res.json())
             .then((data) => setUtilisateurs(data));
-    }, []);
+    }, [BACKEND_URL]);
 
     return (
         <div>

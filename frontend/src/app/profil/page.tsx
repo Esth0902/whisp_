@@ -3,6 +3,8 @@
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+
 type Utilisateur = {
     id: number;
     pseudo: string;
@@ -11,13 +13,11 @@ type Utilisateur = {
 
 export default function ProfilPage() {
     const { user, isLoaded, isSignedIn } = useUser();
-
     const [utilisateur, setUtilisateur] = useState<Utilisateur | null>(null);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
-    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
     useEffect(() => {
         if (isLoaded && isSignedIn && user) {const fetchUtilisateur = async () => {
@@ -49,7 +49,7 @@ export default function ProfilPage() {
 
             fetchUtilisateur();
         }
-    }, [isLoaded, isSignedIn, user]);
+    }, [isLoaded, isSignedIn, user, BACKEND_URL]);
 
     if (!isSignedIn) {
         return <div className="p-6 text-center">Veuillez vous connecter pour voir votre profil.</div>;
