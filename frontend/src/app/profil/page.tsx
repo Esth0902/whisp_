@@ -46,7 +46,6 @@ export default function ProfilPage() {
                 }
             }
         };
-
             fetchUtilisateur();
         }
     }, [isLoaded, isSignedIn, user, BACKEND_URL]);
