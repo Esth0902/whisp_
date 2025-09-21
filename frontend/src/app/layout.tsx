@@ -1,28 +1,27 @@
+// layout.tsx
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { ClerkProvider, useUser } from "@clerk/nextjs";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { ClerkProvider } from '@clerk/nextjs'
+import Sidebar from "@/components/sidebar";
+import "./globals.css";
 
 export const metadata: Metadata = {
     title: "Whisp",
     description: "...",
 };
 
-export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
-    children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
             <html lang="fr">
-            <body style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+            <body className="flex flex-col min-h-screen">
             <Header />
-            <main style={{ flex: 1, padding: "2rem", maxWidth: 960, margin: "auto", width: "100%" }}>
-                {children}
-            </main>
+            {/* Corps principal avec sidebar */}
+            <div className="flex flex-1">
+                <Sidebar />
+                <main className="flex-1 p-6 overflow-auto">{children}</main>
+            </div>
             <Footer />
             </body>
             </html>
