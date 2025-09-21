@@ -6,7 +6,12 @@ async function bootstrap() {
 
     // Active et configure CORS ici
     app.enableCors({
-        origin: "https://whisp-alpha.vercel.app",
+        origin:
+
+            ["https://whisp-36u9.vercel.app", // ton frontend déployé
+        "http://localhost:3000",         // pour le dev local
+]
+,
         methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
         credentials: true, // Autorise les cookies/headers d'auth
     });

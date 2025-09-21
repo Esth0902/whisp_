@@ -1954,7 +1954,7 @@ declare type InternalRequestParams = {
     otelParentCtx?: Context;
     /** Used to "desugar" a user input into an "expanded" one */
     argsMapper?: (args?: UserArgs_2) => UserArgs_2;
-    /** Used to convert args for middleware and back */
+    /** Used to convert args for middlewareTs and back */
     middlewareArgsMapper?: MiddlewareArgsMapper<unknown, unknown>;
     /** Used for Accelerate client extension via Data Proxy */
     customDataProxyFetch?: AccelerateExtensionFetchDecorator;
