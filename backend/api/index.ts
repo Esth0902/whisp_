@@ -1,8 +1,8 @@
-import * as express from 'express';          // namespace import
-import * as serverless from 'serverless-http';
+import express = require('express');          // import compatible TS/CommonJS
+import serverless = require('serverless-http');
 import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import { AppModule } from '../src/app.module'; // chemin selon ton projet
+import { AppModule } from '../src/app.module';
 
 const app = express();
 app.use(express.json());
@@ -19,4 +19,4 @@ async function bootstrap() {
 
 bootstrap();
 
-export const handler = serverless(app);  // <-- PAS de .default
+export const handler = serverless(app);
