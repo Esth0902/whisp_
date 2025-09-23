@@ -37,7 +37,7 @@ exports.handler = void 0;
 const express = __importStar(require("express"));
 const core_1 = require("@nestjs/core");
 const platform_express_1 = require("@nestjs/platform-express");
-const app_module_1 = require("../app.module");
+const app_module_1 = require("../src/app.module");
 const serverless = __importStar(require("serverless-http"));
 const app = express();
 async function bootstrap() {

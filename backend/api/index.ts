@@ -1,11 +1,10 @@
-import express from 'express';                  // <- default import
-import serverless from 'serverless-http';       // <- default import
+import * as express from 'express';          // namespace import
+import * as serverless from 'serverless-http';
 import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import { AppModule } from '../app.module';      // si app.module est dans src/
+import { AppModule } from '../src/app.module'; // chemin selon ton projet
 
 const app = express();
-
 app.use(express.json());
 
 // Route test simple
@@ -20,4 +19,4 @@ async function bootstrap() {
 
 bootstrap();
 
-export const handler = serverless(app);
+export const handler = serverless(app);  // <-- PAS de .default
