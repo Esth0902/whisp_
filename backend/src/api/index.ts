@@ -6,6 +6,13 @@ import { AppModule } from '../app.module';      // si app.module est dans src/
 
 const app = express();
 
+app.use(express.json());
+
+// Route test simple
+app.get('/utilisateurs/faker', (req, res) => {
+    res.json({ message: 'Route Faker OK' });
+});
+
 async function bootstrap() {
     const nestApp = await NestFactory.create(AppModule, new ExpressAdapter(app));
     await nestApp.init();
