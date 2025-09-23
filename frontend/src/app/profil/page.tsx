@@ -10,6 +10,8 @@ type Utilisateur = {
     email: string;
 };
 
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+
 export default function ProfilPage() {
     const { user, isLoaded, isSignedIn } = useUser();
     const [utilisateur, setUtilisateur] = useState<Utilisateur | null>(null);
@@ -17,7 +19,6 @@ export default function ProfilPage() {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
-    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 
     useEffect(() => {
