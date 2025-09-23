@@ -1,6 +1,7 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-    outputFileTracingRoot: __dirname,
+import { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
+    outputFileTracingRoot: __dirname, // <--- ici à la racine
 };
 
-module.exports = nextConfig;
+export default nextConfig;
