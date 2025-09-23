@@ -1,11 +1,10 @@
 import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
 
 const nextConfig = {
     experimental: {
-        // ✅ valeur attendue : chemin de ton frontend
         outputFileTracingRoot: __dirname,
     },
 };
-
 
 export default nextConfig;

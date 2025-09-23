@@ -23,7 +23,6 @@ export default function ProfilPage() {
     useEffect(() => {
         if (isLoaded && isSignedIn && user) {const fetchUtilisateur = async () => {
             try {
-                const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
                 const res = await fetch(`${BACKEND_URL}/utilisateurs/clerk/${user.id}`);
                 const text = await res.text();
                 const data = text ? JSON.parse(text) : null;
