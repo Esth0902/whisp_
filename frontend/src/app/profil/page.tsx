@@ -11,17 +11,19 @@ type Utilisateur = {
 };
 
 export default function ProfilPage() {
-    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
     const { user, isLoaded, isSignedIn } = useUser();
     const [utilisateur, setUtilisateur] = useState<Utilisateur | null>(null);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
+    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+
 
     useEffect(() => {
         if (isLoaded && isSignedIn && user) {const fetchUtilisateur = async () => {
             try {
+                const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
                 const res = await fetch(`${BACKEND_URL}/utilisateurs/clerk/${user.id}`);
                 const text = await res.text();
                 const data = text ? JSON.parse(text) : null;
