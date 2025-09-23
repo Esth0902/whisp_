@@ -44,7 +44,6 @@ export default function ProfilPage() {
         };
             fetchUtilisateur();
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isLoaded, isSignedIn, user]);
 
     if (!isSignedIn) {
