@@ -3,7 +3,6 @@
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 type Utilisateur = {
     id: number;
@@ -12,6 +11,7 @@ type Utilisateur = {
 };
 
 export default function ProfilPage() {
+    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
     const { user, isLoaded, isSignedIn } = useUser();
     const [utilisateur, setUtilisateur] = useState<Utilisateur | null>(null);
     const [username, setUsername] = useState("");
