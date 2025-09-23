@@ -23,12 +23,6 @@ export default function ProfilPage() {
         if (isLoaded && isSignedIn && user) {const fetchUtilisateur = async () => {
             try {
                 const res = await fetch(`${BACKEND_URL}/utilisateurs/clerk/${user.id}`);
-
-                if (!res.ok) {
-                    throw new Error(`Erreur ${res.status} lors du chargement utilisateur.`);
-                }
-
-                // Vérifie si la réponse a un contenu avant de parser
                 const text = await res.text();
                 const data = text ? JSON.parse(text) : null;
 
@@ -48,7 +42,7 @@ export default function ProfilPage() {
         };
             fetchUtilisateur();
         }
-    }, [isLoaded, isSignedIn, user, BACKEND_URL]);
+    }, [isLoaded, isSignedIn, user]);
 
     if (!isSignedIn) {
         return <div className="p-6 text-center">Veuillez vous connecter pour voir votre profil.</div>;
