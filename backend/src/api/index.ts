@@ -2,7 +2,7 @@ import express = require('express');          // import compatible TS/CommonJS
 import serverless = require('serverless-http');
 import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import { AppModule } from '../src/app.module';
+import { AppModule } from '../app.module';
 
 const app = express();
 app.use(express.json());
