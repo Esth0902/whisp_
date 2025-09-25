@@ -8,7 +8,7 @@ async function bootstrap() {
     app.enableCors({
         origin:
 
-            ["https://whisp-36u9.vercel.app", // ton frontend déployé
+            ["https://whisp-bt75.onrender.com/", // ton frontend déployé
         "http://localhost:3000",         // pour le dev local
 ]
 ,
