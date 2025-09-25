@@ -1,2 +1,2 @@
 ### Générer des utilisateurs fictifs
-GET https://whisp-alpha.vercel.app/utilisateurs/faker
+GET https://whisp-backend-3op0.onrender.com/utilisateurs/faker
