@@ -6,12 +6,10 @@ async function bootstrap() {
 
     // Active et configure CORS ici
     app.enableCors({
-        origin:
-
-            ["https://whisp-bt75.onrender.com/", // ton frontend déployé
-        "http://localhost:3000",         // pour le dev local
-]
-,
+        origin: [
+            "https://whisp-bt75.onrender.com", // frontend déployé
+            "http://localhost:3000"             // dev local
+        ],
         methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
         credentials: true, // Autorise les cookies/headers d'auth
     });
