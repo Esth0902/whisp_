@@ -1,7 +1,7 @@
 import { Controller, Post, Body, HttpCode } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 
-@Controller('clerk-webhook')
+@Controller('webhook')
 export class ClerkWebhookController {
     constructor(private prisma: PrismaService) {}
 
