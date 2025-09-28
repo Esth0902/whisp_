@@ -7,7 +7,7 @@ export default function HomePage() {
     const { isSignedIn, user } = useUser();
 
     return (
-        <main className="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-6">
+        <div className="flex flex-col items-center text-center">
             {!isSignedIn ? (
                 <>
                     <h1 className="text-5xl font-extrabold mb-12 text-gray-900 select-none">
@@ -33,7 +33,7 @@ export default function HomePage() {
                     <h1 className="text-3xl font-semibold mb-6 text-gray-900 select-none">
                         Bonjour, {user?.username ?? "Utilisateur"} !
                     </h1>
-                    <p className="mb-8 max-w-md text-center text-gray-700">
+                    <p className="mb-8 max-w-md text-gray-700">
                         Vous êtes connecté à Whisp, votre plateforme de messagerie simple et moderne.
                     </p>
                     <Link
@@ -44,7 +44,6 @@ export default function HomePage() {
                     </Link>
                 </>
             )}
-        </main>
+        </div>
     );
 }
-
